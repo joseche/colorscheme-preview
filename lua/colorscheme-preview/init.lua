@@ -50,10 +50,10 @@ local function close()
 	end
 
 	-- Unmap keys to prevent errors
-	delete_keymap(M.opts.up_keys)
-	delete_keymap(M.opts.down_keys)
-	delete_keymap(M.opts.enter_keys)
-	delete_keymap(M.opts.close_keys)
+	-- delete_keymap(M.opts.up_keys)
+	-- delete_keymap(M.opts.down_keys)
+	-- delete_keymap(M.opts.enter_keys)
+	-- delete_keymap(M.opts.close_keys)
 	win, buf = nil, nil -- Reset variables
 end
 
