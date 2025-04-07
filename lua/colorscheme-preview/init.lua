@@ -71,7 +71,6 @@ local function draw_window()
 
 	buf = api.nvim_create_buf(false, true)
 	api.nvim_buf_set_lines(buf, 0, -1, false, colorschemes)
-    api.nvim_buf_create_user_command(buf, 'q', close, { nargs = 0 })
 
 	local width = M.opts.dialog_width
 	local height = math.min(#colorschemes, M.opts.dialog_height)
