@@ -2,6 +2,11 @@
 
 A neovim plugin to preview all installed colorschemes
 
+
+![colorcheme-preview](colorscheme-preview.mov)
+
+
+
 ## Installation
 
 ### Lazy
