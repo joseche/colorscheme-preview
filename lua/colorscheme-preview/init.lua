@@ -90,13 +90,17 @@ local function draw_window()
 end
 
 local function move_cursor(direction)
-	if direction == "up" and current_index > 1 then
-		current_index = current_index - 1
-	elseif direction == "down" and current_index < #colorschemes then
-		current_index = current_index + 1
-	end
-	api.nvim_win_set_cursor(win, { current_index, 0 })
-	set_colorscheme(current_index)
+	if win and api.nvim_win_is_valid(win) and buf and api.nvim_buf_is_valid(buf) then
+        if direction == "up" and current_index > 1 then
+            current_index = current_index - 1
+        elseif direction == "down" and current_index < #colorschemes then
+            current_index = current_index + 1
+        end
+        api.nvim_win_set_cursor(win, { current_index, 0 })
+        set_colorscheme(current_index)
+    else
+        close()
+    end
 end
 
 local function set_keymap(keys, fn)
