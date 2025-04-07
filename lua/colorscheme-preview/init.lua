@@ -71,6 +71,7 @@ local function draw_window()
 
 	buf = api.nvim_create_buf(false, true)
 	api.nvim_buf_set_lines(buf, 0, -1, false, colorschemes)
+    api.nvim_buf_create_user_command(buf, 'q', close, { nargs = 0 })
 
 	local width = M.opts.dialog_width
 	local height = math.min(#colorschemes, M.opts.dialog_height)
@@ -85,6 +86,7 @@ local function draw_window()
 	}
 	win = api.nvim_open_win(buf, true, opts)
 	api.nvim_win_set_cursor(win, { current_index, 0 })
+
 end
 
 local function move_cursor(direction)
@@ -98,12 +100,13 @@ local function move_cursor(direction)
 end
 
 local function set_keymap(keys, fn)
+    local opts = vim.tbl_extend("force", M.opts.keymap_opts, { buffer = buf })
 	if type(keys) == "table" then
 		for _, item in ipairs(keys) do
-			v.keymap.set("n", item, fn, M.opts.keymap_opts)
+			v.keymap.set("n", item, fn, opts)
 		end
 	else
-		v.keymap.set("n", keys, fn, M.opts.keymap_opts)
+		v.keymap.set("n", keys, fn, opts)
 	end
 end
 
